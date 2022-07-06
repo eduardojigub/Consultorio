@@ -21,5 +21,14 @@ namespace Consultorio.Controllers
         {
             return Ok(agendamentos);
         }
+        [HttpGet("{id}")]
+        public IActionResult GetById(int id)
+        {
+           var agendamentoSelecionado = agendamentos.FirstOrDefault(x => x.Id == id);
+
+            return agendamentoSelecionado != null
+                ? Ok(agendamentoSelecionado)
+                : BadRequest("Erro ao buscar o agendamento");
+        }
     }
 }
